@@ -16,8 +16,6 @@ import Data.Aeson
 import Elm
 import Data.Proxy
 import Data.Text
-import Data.Singletons
-import Data.Singletons.TypeLits ()
 import Data.Scientific
 import GHC.TypeLits
 import GHC.Generics
@@ -43,7 +41,7 @@ addIdToVals keyname ev =
     _ -> ev
 
 
-instance (SingI field, ElmType a) => ElmType (Ent field a) where
+instance (KnownSymbol field, ElmType a) => ElmType (Ent field a) where
   toElmType _ =
     case toElmType (Proxy :: Proxy a) of
       ElmDatatype name (RecordConstructor x (Values v vals)) ->
@@ -52,16 +50,16 @@ instance (SingI field, ElmType a) => ElmType (Ent field a) where
       x -> x
     where
       keyname :: String
-      keyname = fromSing (sing :: Sing field)
+      keyname = symbolVal (Proxy :: Proxy field)
 
-instance (SingI field, ToJSON a) => ToJSON (Ent field a) where
+instance (KnownSymbol field, ToJSON a) => ToJSON (Ent field a) where
   toJSON (Ent (Entity k val)) =
     case toJSON val of
       Object hmap -> Object (Map.insert keyname (toJSON k) hmap)
       x           -> x
     where
       keyname :: Text
-      keyname = T.pack $ fromSing (sing :: Sing field)
+      keyname = T.pack $ symbolVal (Proxy :: Proxy field)
 
 valToKey :: ToBackendKey SqlBackend record => Value -> Maybe (Key record)
 valToKey (Number n) = toSqlKey <$> toBoundedInteger n
@@ -69,12 +67,12 @@ valToKey _          = Nothing
 
 instance ( ToBackendKey SqlBackend a
          , PersistEntity a
-         , SingI field
+         , KnownSymbol field
          , FromJSON a) => FromJSON (Ent field a) where
   parseJSON obj@(Object o) =
     let
       keyname :: String
-      keyname = fromSing (sing :: Sing field)
+      keyname = symbolVal (Proxy :: Proxy field)
       mkey = Map.lookup (T.pack keyname) o
       keyParser = do key <- maybe (fail $ "Ent: no key found for field " ++ keyname)
                             pure mkey
