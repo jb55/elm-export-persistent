@@ -97,7 +97,7 @@ main = specsToDir [accountSpec] "some/where/output"
 
 This generates:
 
-```hs
+```elm
 module Generated.Account exposing (..)
 
 import Json.Decode exposing (..)
