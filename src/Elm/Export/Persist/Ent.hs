@@ -1,3 +1,11 @@
+-- |
+-- Module      :  Elm.Export.Persist.Ent
+-- Copyright   :  (C) 2016-17 William Casarin
+-- License     :  MIT
+-- Maintainer  :  William Casarin <bill@casarin.me>
+-- Stability   :  experimental
+-- Portability :  non-portable
+
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE ScopedTypeVariables #-}
@@ -23,9 +31,19 @@ import GHC.Generics
 import qualified Data.HashMap.Strict as Map
 import qualified Data.Text as T
 
+-- | 'Entity' wrapper that adds `ToJSON`, `FromJSON`, and `ElmType` instances
+--
+-- The first type parameter 'field' is a symbol used for the key name
+--
+-- >>> toElmTypeSource (Proxy :: Proxy (Ent "userId" User))
+-- "type alias User = { userName : String, userId : Int }"
 newtype Ent (field :: Symbol) a = Ent (Entity a)
   deriving (Generic)
 
+-- | 'Ent' alias, using "id" as the key
+--
+-- >>> toElmTypeSource (Proxy :: Proxy (EntId User))
+-- "type alias User = { userName : String, id : Int }"
 type EntId a = Ent "id" a
 
 elmIdField :: Text -> ElmValue

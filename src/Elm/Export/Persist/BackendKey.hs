@@ -1,3 +1,16 @@
+-- |
+-- Module      :  Elm.Export.Persist.Ent
+-- Copyright   :  (C) 2016-17 William Casarin
+-- License     :  MIT
+-- Maintainer  :  William Casarin <bill@casarin.me>
+-- Stability   :  experimental
+-- Portability :  non-portable
+--
+-- Orphan instances needed for SQL keys
+--
+-- This is usually required, but optionally exported in case you have your own
+-- already
+
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE DeriveGeneric #-}
