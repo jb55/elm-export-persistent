@@ -30,6 +30,7 @@ source-repository head
 
 library
   exposed-modules: Elm.Export.Persist
+                 , Elm.Export.Persist.Ent
                  , Elm.Export.Persist.BackendKey
   -- other-modules:
   -- other-extensions:
