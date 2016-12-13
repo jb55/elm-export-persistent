@@ -3,8 +3,6 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
-{-# OPTIONS_GHC -Wno-orphans #-}
-
 module Elm.Export.Persist.BackendKey () where
 
 import GHC.Generics
