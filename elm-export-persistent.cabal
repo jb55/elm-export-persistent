@@ -2,7 +2,7 @@
 -- further documentation, see http://haskell.org/cabal/users-guide/
 
 name:                elm-export-persistent
-version:             0.1.0.0
+version:             0.1.0
 synopsis:            elm-export persistent entities
 description:
   Ent is a newtype that wraps Persistent Entity's, allowing you to export them
