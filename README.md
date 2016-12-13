@@ -1,6 +1,8 @@
 
 # elm-export-persistent
 
+[![Build Status](https://travis-ci.org/jb55/elm-export-persistent.svg)](https://travis-ci.org/jb55/elm-export-persistent)
+
 [elm-export](https://hackage.haskell.org/package/elm-export) helpers for
 Peristent Entities.
 
