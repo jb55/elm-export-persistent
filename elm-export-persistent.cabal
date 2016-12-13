@@ -26,7 +26,7 @@ library
                  , Elm.Export.Persistent.BackendKey
   -- other-modules:
   -- other-extensions:
-  build-depends: base >=4.9 && <5
+  build-depends: base >=4.8 && <5
                , elm-export
                , persistent
                , aeson
