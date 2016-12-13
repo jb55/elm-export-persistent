@@ -4,7 +4,10 @@
 name:                elm-export-persistent
 version:             0.1.0.0
 synopsis:            elm-export persistent entities
-description:         elm-export persistent entities
+description:
+  Ent is a newtype that wraps Persistent Entity's, allowing you to export them
+  to Elm types. Specifically, it adds a To/From JSON instance which adds an id
+  field, as well as an ElmType instance that adds an id field constructor.
 homepage:            https://github.com/jb55/elm-export-persistent
 license:             MIT
 license-file:        LICENSE
@@ -15,15 +18,19 @@ category:            Data
 build-type:          Simple
 extra-source-files:  ChangeLog.md
 cabal-version:       >=1.10
-tested-with:         GHC == 7.10.1, GHC == 7.10.2, GHC == 7.10.3, GHC == 8.0.1
+tested-with:         GHC == 7.10.1
+                   , GHC == 7.10.2
+                   , GHC == 7.10.3
+                   , GHC == 8.0.1
+                   , GHC == 8.0.2
 
 source-repository head
   type:     git
   location: https://github.com/jb55/elm-export-persistent
 
 library
-  exposed-modules: Elm.Export.Persistent
-                 , Elm.Export.Persistent.BackendKey
+  exposed-modules: Elm.Export.Persist
+                 , Elm.Export.Persist.BackendKey
   -- other-modules:
   -- other-extensions:
   build-depends: base >=4.8 && <5
