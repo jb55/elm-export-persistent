@@ -65,6 +65,9 @@ instance (KnownSymbol field, ElmType a) => ElmType (Ent field a) where
       ElmDatatype name (RecordConstructor x (Values v vals)) ->
         ElmDatatype name (RecordConstructor x
                             (Values v (addIdToVals keyname vals)))
+      ElmDatatype name (RecordConstructor x f@(ElmField _ _)) ->
+        ElmDatatype name (RecordConstructor x
+                            (Values f $ elmIdField (T.pack keyname)))
       x -> x
     where
       keyname :: String
