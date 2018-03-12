@@ -73,7 +73,7 @@ instance (KnownSymbol field, ElmType a) => ElmType (Ent field a) where
       keyname :: String
       keyname = symbolVal (Proxy :: Proxy field)
 
-instance (KnownSymbol field, ToJSON a) => ToJSON (Ent field a) where
+instance (KnownSymbol field, ToJSON a, ToJSON (Key a)) => ToJSON (Ent field a) where
   toJSON (Ent (Entity k val)) =
     case toJSON val of
       Object hmap -> Object (Map.insert keyname (toJSON k) hmap)
