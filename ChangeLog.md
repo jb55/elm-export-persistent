@@ -1,5 +1,9 @@
 # Revision history for elm-export-persistent
 
+## 1.0.0 -- 2021-01-09
+
+* Removed duplicate Generic instance for BackendKey
+
 ## 0.2.0 -- 2018-03-12
 
 * Fixed compilation issue with missing ToJSON constraint on Entity keys
