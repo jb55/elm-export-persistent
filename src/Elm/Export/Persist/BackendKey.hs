@@ -23,5 +23,4 @@ import Elm
 import Database.Persist
 import Database.Persist.Sql
 
-deriving instance Generic (BackendKey SqlBackend)
 deriving instance ElmType (BackendKey SqlBackend)
